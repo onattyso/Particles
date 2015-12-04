@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-<title>Web VR boilerplate</title>
+<title>Snowing in VR</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 <meta name="mobile-web-app-capable" content="yes">
@@ -133,13 +133,13 @@ var mouseY = 1;
 var mouseX = 1;
 var start = 0;
 
-var particleCount = 8000,
+var particleCount = 6000,
     particles = new THREE.Geometry(),
     pMaterial = new THREE.PointCloudMaterial({
-      vertexColors: THREE.VertexColors,
-      size: 9, 
+      color: 0xFFFFFF,
+      size: Math.random()*10, 
       map: THREE.ImageUtils.loadTexture(
-          "img/particle2.png"
+          "img/snowflake.png"
         ),
       blending: THREE.AdditiveBlending,
       transparent: true
@@ -156,8 +156,7 @@ for (var p = 0; p < particleCount; p++) {
         -Math.random()*2,
         0
       );
-      particles.colors.push(new THREE.Color(Math.random(), Math.random(), Math.random()));
-
+      // particles.colors.push(new THREE.Color(Math.random(), Math.random(), Math.random()));
       particles.vertices.push(particle);
 }
 
@@ -190,12 +189,12 @@ function animate(timestamp) {
 
     particle.velocity.y -= (Math.random() * .01);
 
+
     particle.y += particle.velocity.y;
     particle.z += particle.velocity.z;
     particle.x += particle.velocity.x;
 
     particle.setY(particle.y-1.0);
-
 
   }
 
