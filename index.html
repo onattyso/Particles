@@ -132,15 +132,12 @@ var manager = new WebVRManager(renderer, effect, {hideButton: false});
 
 // Create 3D objects.
 
-var mouseY = 1;
-var mouseX = 1;
-var start = 0;
 
-var particleCount = 5000,
+var particleCount = 6000,
     particles = new THREE.Geometry(),
     pMaterial = new THREE.PointCloudMaterial({
       color: 0xFFFFFF,
-      size: 9, 
+      size: 5, 
       map: THREE.ImageUtils.loadTexture(
           "img/snowflake.png"
         ),
@@ -155,9 +152,9 @@ for (var p = 0; p < particleCount; p++) {
       particle = (new THREE.Vector3(pX, pY, pZ));
     
       particle.velocity = new THREE.Vector3(
-        0,
+        Math.random(),
         -Math.random()*2,
-        0
+        Math.random()
       );
       // particles.colors.push(new THREE.Color(Math.random(), Math.random(), Math.random()));
       particles.vertices.push(particle);
@@ -183,7 +180,7 @@ function animate(timestamp) {
 
   while (pCount--){
     var particle = particles.vertices[pCount];
-    if (particle.y < -200) {
+    if (particle.y < -500) {
         particle.y = Math.random()*900;
         particle.x = 800*Math.random() - 500;
         particle.z = 800*Math.random() - 500;
